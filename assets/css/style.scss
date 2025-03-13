@@ -95,3 +95,36 @@ button {
   font-size: 1.2em;
   margin-bottom: 10px;
 }
+
+.rep-container {
+  border: 1px solid lightgrey;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: 150px;
+  overflow-y: scroll;
+  border-radius: 4px;
+}
+
+.user-response {
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  list-style-type: none;
+  width: fit-content;
+  margin-block: 5px;
+  padding: 5px;
+  margin-inline: auto;
+  line-height: 28px;
+}
+
+.rep {
+  border-radius: 9999px;
+  border: 1px solid black;
+  padding: 5px 10px;
+
+  &.correct {
+    background-color: #c8e6c9 !important;
+  }
+
+  &.wrong {
+    background-color: #ffcdd2 !important;
+  }
+}
