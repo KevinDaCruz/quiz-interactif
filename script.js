@@ -19,8 +19,6 @@ const bestScoreEnd = document.getElementById("best-score-end");
 
 const questionText = document.getElementById("question-text");
 const answersDiv = document.getElementById("answers");
-const hintText = document.getElementById("hint");
-const hintBtn = document.getElementById("hintBtn");
 const nextBtn = document.getElementById("next-btn");
 const startBtn = document.getElementById("start-btn");
 const restartBtn = document.getElementById("restart-btn");
