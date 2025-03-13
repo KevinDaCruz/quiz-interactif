@@ -1,20 +1,6 @@
-console.log("Quiz JS loaded...");
+import questions from './assets/js/questions.js';
 
-const questions = [
-  {
-    text: "Quelle est la capitale de la France ?",
-    answers: ["Marseille", "Paris", "Lyon", "Bordeaux"],
-    correct: 1,
-    timeLimit: 10,
-  },
-  {
-    text: "Combien font 2 + 3 ?",
-    answers: ["3", "4", "5", "1"],
-    correct: 2,
-    timeLimit: 5,
-  },
-  // Ajoutez d’autres questions si besoin
-];
+console.log("Quiz JS loaded...");
 
 // Variables
 let currentQuestionIndex = 0;
@@ -33,6 +19,8 @@ const bestScoreEnd = document.getElementById("best-score-end");
 
 const questionText = document.getElementById("question-text");
 const answersDiv = document.getElementById("answers");
+const hintText = document.getElementById("hint");
+const hintBtn = document.getElementById("hintBtn");
 const nextBtn = document.getElementById("next-btn");
 const startBtn = document.getElementById("start-btn");
 const restartBtn = document.getElementById("restart-btn");
