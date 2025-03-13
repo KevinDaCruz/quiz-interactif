@@ -110,9 +110,11 @@ function selectAnswer(index, btn) {
 }
 
 function nextQuestion() {
+  hintText.classList.add("hidden");
   currentQuestionIndex++;
   if (currentQuestionIndex < questions.length) {
     showQuestion();
+    
   } else {
     endQuiz();
   }
