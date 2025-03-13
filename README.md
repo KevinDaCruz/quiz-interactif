@@ -1,6 +1,7 @@
 # Quiz Dynamique
 
 Un quiz interactif en HTML/CSS/JS permettant :
+
 - Un **timer** par question,
 - Un **feedback** rouge/vert immédiat,
 - Une **barre de progression** (question X/Y),
@@ -16,9 +17,14 @@ Un quiz interactif en HTML/CSS/JS permettant :
 ## Installation
 
 1. Cloner ce dépôt :
-`git clone https://github.com/votre-nom/quiz-dynamique.git`
+   `git clone https://github.com/votre-nom/quiz-dynamique.git`
 
 2. Ouvrir `index.html` dans un navigateur.
+
+## Installation - SASS
+
+- `npm install`
+- pour lancer le compilateur SASS : `npm run sass:watch`
 
 ## Utilisation
 
