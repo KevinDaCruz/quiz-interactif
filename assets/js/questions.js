@@ -105,3 +105,5 @@ const questions = [
     timeLimit: 10
   }
 ];
+
+export default questions;
