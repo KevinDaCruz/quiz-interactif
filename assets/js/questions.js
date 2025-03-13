@@ -103,6 +103,111 @@ const questions = [
     hint: "C'est là où se trouvent le Trône de Fer et les Sept Royaumes.",
     correct: 0,
     timeLimit: 10
+  },
+  {
+    text: "Quel est le nom de l'équipe de Kakashi Hatake ?",
+    answers: ["Équipe 7", "Équipe 8", "Équipe 9", "Équipe 10"],
+    hint: "Elle est composée de Naruto, Sasuke et Sakura.",
+    correct: 0,
+    timeLimit: 10
+  },
+  {
+    text: "Quel est le nom du village caché de Naruto ?",
+    answers: ["Kiri", "Iwa", "Konoha", "Suna"],
+    hint: "Son symbole est une feuille.",
+    correct: 2,
+    timeLimit: 10
+  },
+  {
+    text: "Quelle est l'évolution de Pikachu ?",
+    answers: ["Raichu", "Pichu", "Evoli", "Bulbizarre"],
+    hint: "Il devient plus puissant et plus orange.",
+    correct: 0,
+    timeLimit: 10
+  },
+  {
+    text: "Quel est le type de Salamèche ?",
+    answers: ["Eau", "Feu", "Plante", "Électrique"],
+    hint: "Il crache du feu.",
+    correct: 1,
+    timeLimit: 10
+  },
+  {
+    text: "Quel est le navigateur web le plus utilisé au monde ?",
+    answers: ["Firefox", "Safari", "Google Chrome", "Edge"],
+    hint: "C'est un produit de Google.",
+    correct: 2,
+    timeLimit: 10
+  },
+  {
+    text: "Quelle est la signification de l'acronyme 'HTML' ?",
+    answers: ["Hyper Text Markup Language", "Home Tool Markup Language", "Hyperlinks and Text Markup Language", "Home Text Markup Language"],
+    hint: "Il est utilisé pour structurer les pages web.",
+    correct: 0,
+    timeLimit: 10
+  },
+  {
+    text: "Qui est l'auteur des livres Game of Thrones ?",
+    answers: ["J.R.R. Tolkien", "George R.R. Martin", "J.K. Rowling", "Stephen King"],
+    hint: "Ses initiales sont G.R.R.M.",
+    correct: 1,
+    timeLimit: 10
+  },
+  {
+    text: "Quelle maison a pour emblème un cerf couronné ?",
+    answers: ["Maison Stark", "Maison Targaryen", "Maison Lannister", "Maison Baratheon"],
+    hint: "Son slogan est 'Ours is the Fury'.",
+    correct: 3,
+    timeLimit: 10
+  },
+  {
+    text: "Qui est le créateur de Naruto ?",
+    answers: ["Akira Toriyama", "Eiichiro Oda", "Masashi Kishimoto", "Tite Kubo"],
+    hint: "Il a également créé Boruto.",
+    correct: 2,
+    timeLimit: 10
+  },
+  {
+    text: "Quelle technique utilise Naruto pour créer des clones ?",
+    answers: ["Chidori", "Rasengan", "Kage Bunshin no Jutsu", "Amaterasu"],
+    hint: "Elle permet de créer des clones de l'ombre.",
+    correct: 2,
+    timeLimit: 10
+  },
+  {
+    text: "Quel est le type principal de Dracolosse ?",
+    answers: ["Dragon", "Électrique", "Glace", "Psy"],
+    hint: "C'est un dragon légendaire.",
+    correct: 0,
+    timeLimit: 10
+  },
+  {
+    text: "Quel est le nom du professeur qui donne le premier Pokémon au joueur dans les jeux de la première génération ?",
+    answers: ["Professeur Platane", "Professeur Orme", "Professeur Chen", "Professeur Seko"],
+    hint: "Son nom commence par la lettre 'C'.",
+    correct: 2,
+    timeLimit: 10
+  },
+  {
+    text: "Quel est le format d'image le plus couramment utilisé sur le web ?",
+    answers: ["JPEG", "PNG", "GIF", "BMP"],
+    hint: "Il est souvent utilisé pour les photos.",
+    correct: 0,
+    timeLimit: 10
+  },
+  {
+    text: "Quel est le langage de programmation principalement utilisé pour créer des applications web dynamiques ?",
+    answers: ["Python", "JavaScript", "Ruby", "C++"],
+    hint: "Il est souvent utilisé avec HTML et CSS.",
+    correct: 1,
+    timeLimit: 10
+  },
+  {
+    text: "Quel est le métal utilisé pour forger les épées légendaires comme Glace et Longclaw ?",
+    answers: ["Acier de Valyrie", "Acier de Westeros", "Acier Inoxydable", "Acier Sombre"],
+    hint: "Il vient de Valyria.",
+    correct: 0,
+    timeLimit: 10
   }
 ];
 
