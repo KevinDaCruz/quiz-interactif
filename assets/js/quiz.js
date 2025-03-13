@@ -47,6 +47,7 @@ const timeLeftSpan = getElement('#time-left');
 const currentQuestionIndexSpan = getElement('#current-question-index');
 const totalQuestionsSpan = getElement('#total-questions');
 
+const audioDisplay = getElement('#audio');
 const gameResume = getElement('#user-responses');
 
 // Init
@@ -83,6 +84,10 @@ function showQuestion() {
   });
 
   nextBtn.classList.add('hidden');
+  if (currentQuestionIndex > 15) {
+    hideElement(audioDisplay);
+  }
+  audioDisplay.src = `../assets/audio/${currentQuestionIndex}.mp3`;
 
   timeLeftSpan.textContent = q.timeLimit;
   timerId = startTimer(
