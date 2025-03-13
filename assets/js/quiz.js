@@ -34,6 +34,9 @@ const bestScoreEnd = getElement("#best-score-end");
 
 const questionText = getElement("#question-text");
 const answersDiv = getElement("#answers");
+const hintText = document.getElementById("hint");
+
+const hintBtn = document.getElementById("hintBtn");
 const nextBtn = getElement("#next-btn");
 const startBtn = getElement("#start-btn");
 const restartBtn = getElement("#restart-btn");
@@ -69,6 +72,7 @@ function showQuestion() {
   const q = questions[currentQuestionIndex];
   setText(questionText, q.text);
   setText(currentQuestionIndexSpan, currentQuestionIndex + 1);
+  setText(hintText, q.hint);
 
   answersDiv.innerHTML = "";
   q.answers.forEach((answer, index) => {
@@ -133,3 +137,11 @@ function restartQuiz() {
 
   setText(bestScoreValue, bestScore);
 }
+
+hintBtn.addEventListener("click", () => {
+  if(hintText.classList.contains('hidden')){
+    hintText.classList.remove("hidden");
+  } else {
+    hintText.classList.add("hidden");
+  }
+});
