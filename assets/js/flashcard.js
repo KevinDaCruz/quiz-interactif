@@ -165,14 +165,16 @@ hintBtn.addEventListener('click', () => {
 
 // Ajout du dark mode
 const darkModeToggle = document.getElementById('dark-mode-toggle');
-if (darkModeToggle) {
-  darkModeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-  });
-}
+const gifBackgroundElement = document.querySelector('.gif-background');
+const dayGif = '/assets/img/day.gif';
+const nightGif = '/assets/img/night.gif';
+gifBackgroundElement.style.backgroundImage = `url('${dayGif}')`;
 
-// //ajout du mode Flashcard
-// const flashcard = document.getElementById('flashcard')
-// flashcard.addEventListener('click', () => {
-//   let gamemode = 1;
-// });
+darkModeToggle.addEventListener('click', () => {
+  const currentBackground = gifBackgroundElement.style.backgroundImage;
+  gifBackgroundElement.style.backgroundImage = currentBackground.includes(
+    dayGif
+  )
+    ? `url('${nightGif}')`
+    : `url('${dayGif}')`;
+});
