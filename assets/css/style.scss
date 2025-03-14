@@ -1,14 +1,32 @@
+@use "sass:color";
+
 $primary-color: #1976d2;
 $primary-hover-color: #1565c0;
 $background-color: #fafafa;
 $text-color: #333;
 
 body {
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
   margin: 20px;
   text-align: center;
   background: $background-color;
   color: $text-color;
+
+  // Style spécifique pour le mode sombre
+  &.dark-mode {
+    background: #121212;
+    color: #e0e0e0;
+
+    // On adapte les boutons si besoin
+    button {
+      background-color: color.adjust($primary-color, $lightness: -10%);
+      color: #fff;
+
+      &:hover {
+        background-color: color.adjust($primary-hover-color, $lightness: -10%);
+      }
+    }
+  }
 }
 
 h1 {
