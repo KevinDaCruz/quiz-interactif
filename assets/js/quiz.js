@@ -29,14 +29,14 @@ let timerId = null;
 let globalTimerId = null;
 let userResponses = [];
 let isTimeAttack = false;
-let globalTimeLeft = 20;
+let globalTimeLeft = 30;
 
 // DOM Elements
 const introScreen = getElement('#intro-screen');
 const questionScreen = getElement('#question-screen');
 const resultScreen = getElement('#result-screen');
-const introSelector = getElement('#select-mode');
 const introError = getElement('#intro-error');
+const timeAttackBtn = getElement('#time_attack_btn');
 
 const bestScoreValue = getElement('#best-score-value');
 const bestScoreEnd = getElement('#best-score-end');
@@ -64,7 +64,8 @@ const shareFacebookBtn = getElement('#share-facebook');
 const shareBtn = getElement('#share-btn');
 
 // Init
-startBtn.addEventListener('click', startQuiz);
+startBtn.addEventListener('click', () => startQuiz(false));
+timeAttackBtn.addEventListener('click', () => startQuiz(true));
 nextBtn.addEventListener('click', nextQuestion);
 restartBtn.addEventListener('click', restartQuiz);
 
@@ -72,31 +73,29 @@ setText(bestScoreValue, bestScore);
 
 let questionCount = 0;
 
-function startQuiz() {
-  if (selectorVerification(introSelector, introError)) {
-    hideElement(introScreen);
-    showElement(questionScreen);
-    audioPlay(audioDisplay, audioButton);
-    isTimeAttack = introSelector.value === 'time_attack';
+function startQuiz(timeAttackMode) {
+  hideElement(introScreen);
+  showElement(questionScreen);
+  audioPlay(audioDisplay, audioButton);
+  isTimeAttack = timeAttackMode;
 
-    if (isTimeAttack) {
-      globalTimeLeft = 20;
-      setText(timeLeftSpan, globalTimeLeft);
-      globalTimerId = startTimer(
-        globalTimeLeft,
-        (timeLeft) => {
-          globalTimeLeft = timeLeft;
-          setText(timeLeftSpan, timeLeft);
-        },
-        endQuiz
-      );
-    }
-
-    questionCount = 0;
-    score = 0;
-    setText(totalQuestionsSpan, questions.length);
-    showQuestion();
+  if (isTimeAttack) {
+    globalTimeLeft = 30;
+    setText(timeLeftSpan, globalTimeLeft);
+    globalTimerId = startTimer(
+      globalTimeLeft,
+      (timeLeft) => {
+        globalTimeLeft = timeLeft;
+        setText(timeLeftSpan, timeLeft);
+      },
+      endQuiz
+    );
   }
+
+  questionCount = 0;
+  score = 0;
+  setText(totalQuestionsSpan, questions.length);
+  showQuestion();
 }
 
 function showQuestion() {
@@ -176,33 +175,6 @@ function endQuiz() {
   setText(bestScoreEnd, bestScore);
 }
 
-// Boutons de partage
-shareTwitterBtn.addEventListener('click', () => {
-  const url = `https://twitter.com/intent/tweet?text=J'ai obtenu ${score}/${questions.length} au quiz !&url=${window.location.href}`;
-  window.open(url, '_blank');
-});
-
-shareFacebookBtn.addEventListener('click', () => {
-  const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-    window.location.href
-  )}`;
-  window.open(url, '_blank');
-});
-
-shareBtn.addEventListener('click', () => {
-  if (navigator.share) {
-    navigator
-      .share({
-        title: 'Quiz Dynamique',
-        text: `J'ai obtenu ${score}/${questions.length} au quiz !`,
-        url: window.location.href,
-      })
-      .catch(console.error);
-  } else {
-    alert("Le partage n'est pas disponible sur cette plateforme.");
-  }
-});
-
 function restartQuiz() {
   clearInterval(globalTimerId);
   hideElement(resultScreen);
@@ -213,11 +185,7 @@ function restartQuiz() {
 }
 
 hintBtn.addEventListener('click', () => {
-  if (hintText.classList.contains('hidden')) {
-    hintText.classList.remove('hidden');
-  } else {
-    hintText.classList.add('hidden');
-  }
+  hintText.classList.toggle('hidden');
 });
 
 // Ajout du dark mode
@@ -229,9 +197,9 @@ gifBackgroundElement.style.backgroundImage = `url('${dayGif}')`;
 
 darkModeToggle.addEventListener('click', () => {
   const currentBackground = gifBackgroundElement.style.backgroundImage;
-  if (currentBackground.includes(dayGif)) {
-    gifBackgroundElement.style.backgroundImage = `url('${nightGif}')`;
-  } else {
-    gifBackgroundElement.style.backgroundImage = `url('${dayGif}')`;
-  }
+  gifBackgroundElement.style.backgroundImage = currentBackground.includes(
+    dayGif
+  )
+    ? `url('${nightGif}')`
+    : `url('${dayGif}')`;
 });
