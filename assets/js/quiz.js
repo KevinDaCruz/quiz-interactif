@@ -87,7 +87,7 @@ function showQuestion() {
 
   const q = questions[currentQuestionIndex];
   setText(questionText, q.text);
-  setText(currentQuestionIndexSpan, currentQuestionIndex + 1);
+  setText(currentQuestionIndexSpan, questionCount + 1);
   setText(hintText, q.hint);
 
   answersDiv.innerHTML = '';
