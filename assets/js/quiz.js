@@ -1,4 +1,4 @@
-import questions from './questions.js';
+import questions from "./questions.js";
 
 // quiz.js
 import {
@@ -12,50 +12,55 @@ import {
   markCorrectAnswer,
   createResume,
   audioPlay,
-} from './dom.js';
+} from "./dom.js";
 import {
   loadFromLocalStorage,
   saveToLocalStorage,
   startTimer,
-} from './utils.js';
+} from "./utils.js";
 
-console.log('Quiz JS loaded...');
+console.log("Quiz JS loaded...");
 
 let currentQuestionIndex = 0;
 let score = 0;
-let bestScore = loadFromLocalStorage('bestScore', 0);
+let bestScore = loadFromLocalStorage("bestScore", 0);
 let timerId = null;
 let userResponses = [];
 
 // DOM Elements
-const introScreen = getElement('#intro-screen');
-const questionScreen = getElement('#question-screen');
-const resultScreen = getElement('#result-screen');
+const introScreen = getElement("#intro-screen");
+const questionScreen = getElement("#question-screen");
+const resultScreen = getElement("#result-screen");
 
-const bestScoreValue = getElement('#best-score-value');
-const bestScoreEnd = getElement('#best-score-end');
-const hintText = document.getElementById('hint');
+const bestScoreValue = getElement("#best-score-value");
+const bestScoreEnd = getElement("#best-score-end");
+const hintText = document.getElementById("hint");
 
-const questionText = getElement('#question-text');
-const answersDiv = getElement('#answers');
-const nextBtn = getElement('#next-btn');
-const startBtn = getElement('#start-btn');
-const restartBtn = getElement('#restart-btn');
+const questionText = getElement("#question-text");
+const answersDiv = getElement("#answers");
+const nextBtn = getElement("#next-btn");
+const startBtn = getElement("#start-btn");
+const restartBtn = getElement("#restart-btn");
 
-const scoreText = getElement('#score-text');
-const timeLeftSpan = getElement('#time-left');
+const scoreText = getElement("#score-text");
+const timeLeftSpan = getElement("#time-left");
 
-const currentQuestionIndexSpan = getElement('#current-question-index');
-const totalQuestionsSpan = getElement('#total-questions');
+const currentQuestionIndexSpan = getElement("#current-question-index");
+const totalQuestionsSpan = getElement("#total-questions");
 
-const audioDisplay = getElement('#audio');
-const audioButton = getElement('#player');
-const gameResume = getElement('#user-responses');
+const audioDisplay = getElement("#audio");
+const audioButton = getElement("#player");
+const gameResume = getElement("#user-responses");
+
+// Boutons de partage
+const shareTwitterBtn = getElement("#share-twitter");
+const shareFacebookBtn = getElement("#share-facebook");
+const shareBtn = getElement("#share-btn");
 
 // Init
-startBtn.addEventListener('click', startQuiz);
-nextBtn.addEventListener('click', nextQuestion);
-restartBtn.addEventListener('click', restartQuiz);
+startBtn.addEventListener("click", startQuiz);
+nextBtn.addEventListener("click", nextQuestion);
+restartBtn.addEventListener("click", restartQuiz);
 
 setText(bestScoreValue, bestScore);
 
@@ -65,7 +70,7 @@ function startQuiz() {
   hideElement(introScreen);
   showElement(questionScreen);
   audioPlay(audioDisplay, audioButton);
-  //Nombres aléatoires
+  // Nombres aléatoires
   for (let i = 0; i < questions.length; i++) {
     let randomNumber = Math.floor(Math.random() * questions.length);
     currentQuestionIndex = randomNumber;
@@ -87,13 +92,13 @@ function showQuestion() {
   setText(currentQuestionIndexSpan, questionCount + 1);
   setText(hintText, q.hint);
 
-  answersDiv.innerHTML = '';
+  answersDiv.innerHTML = "";
   q.answers.forEach((answer, index) => {
     const btn = createAnswerButton(answer, () => selectAnswer(index, btn));
     answersDiv.appendChild(btn);
   });
 
-  nextBtn.classList.add('hidden');
+  nextBtn.classList.add("hidden");
   if (currentQuestionIndex > 15) {
     hideElement(audioDisplay);
   }
@@ -105,7 +110,7 @@ function showQuestion() {
     (timeLeft) => setText(timeLeftSpan, timeLeft),
     () => {
       lockAnswers(answersDiv);
-      nextBtn.classList.remove('hidden');
+      nextBtn.classList.remove("hidden");
     }
   );
 }
@@ -118,18 +123,18 @@ function selectAnswer(index, btn) {
   const q = questions[currentQuestionIndex];
   if (index === q.correct) {
     score++;
-    btn.classList.add('correct');
+    btn.classList.add("correct");
   } else {
-    btn.classList.add('wrong');
+    btn.classList.add("wrong");
   }
 
   markCorrectAnswer(answersDiv, q.correct);
   lockAnswers(answersDiv);
-  nextBtn.classList.remove('hidden');
+  nextBtn.classList.remove("hidden");
 }
 
 function nextQuestion() {
-  hintText.classList.add('hidden');
+  hintText.classList.add("hidden");
   if (questionCount >= questions.length - 1) {
     endQuiz();
     return;
@@ -157,24 +162,49 @@ function endQuiz() {
 
   if (score > bestScore) {
     bestScore = score;
-    saveToLocalStorage('bestScore', bestScore);
+    saveToLocalStorage("bestScore", bestScore);
   }
   setText(bestScoreEnd, bestScore);
 }
+
+// Boutons de partage
+shareTwitterBtn.addEventListener("click", () => {
+  const url = `https://twitter.com/intent/tweet?text=J'ai obtenu ${score}/${questions.length} au quiz !&url=${window.location.href}`;
+  window.open(url, "_blank");
+});
+
+shareFacebookBtn.addEventListener("click", () => {
+  const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`;
+  window.open(url, "_blank");
+});
+
+shareBtn.addEventListener("click", () => {
+  if (navigator.share) {
+    navigator
+      .share({
+        title: "Quiz Dynamique",
+        text: `J'ai obtenu ${score}/${questions.length} au quiz !`,
+        url: window.location.href,
+      })
+      .catch(console.error);
+  } else {
+    alert("Le partage n'est pas disponible sur cette plateforme.");
+  }
+});
 
 function restartQuiz() {
   hideElement(resultScreen);
   showElement(introScreen);
   setText(bestScoreValue, bestScore);
-  gameResume.innerHTML = '';
+  gameResume.innerHTML = "";
   userResponses = [];
 }
 
-hintBtn.addEventListener('click', () => {
-  if (hintText.classList.contains('hidden')) {
-    hintText.classList.remove('hidden');
+hintBtn.addEventListener("click", () => {
+  if (hintText.classList.contains("hidden")) {
+    hintText.classList.remove("hidden");
   } else {
-    hintText.classList.add('hidden');
+    hintText.classList.add("hidden");
   }
 });
 
