@@ -44,3 +44,14 @@ export const createResume = (
 export const audioPlay = (audio, audioButton) => {
   audioButton.addEventListener('click', () => audio.play());
 };
+export const createResumeFlashcard = (
+  question,
+  userResponse,
+  goodResponse
+) => {
+  const li = document.createElement('li');
+  li.classList.add('user-response');
+  li.innerHTML = `<p>${question} <span class="rep ${
+    userResponse === goodResponse ? 'correct' : 'wrong'
+  }">${userResponse}</span></p>`;
+};

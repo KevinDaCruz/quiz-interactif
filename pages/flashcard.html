@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" class="gif-background dark-mode">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <title>Quiz Dynamique</title>
@@ -8,16 +8,16 @@
   <body>
     <header>
       <button id="dark-mode-toggle">Mode Sombre</button>
-      <a href="flashcard.html"><button id="flashcard">Mode Flashcard</button></a>
+      <a href="index.html"><button id="flashcard">Mode Normal</button></a>
     </header>
-    <h1 class="honk-honk">Quiz Super Magique Deluxe Édition Collector</h1>
+    <h1>Quiz Dynamique</h1>
 
     <div id="intro-screen">
       <p class="notice">
-        As-tu l'Esprit Shonen ? Testes toi avec notre Quiz de Culture G !
+        Testez vos connaissances en quelques questions sans pression !
       </p>
-      <p>Meilleur score : <span id="best-score-value">0</span></p>
-      <button id="start-btn">POUR LA HORDE !</button>
+      <!-- <p>Meilleur score : <span id="best-score-value">0</span></p> -->
+      <button id="start-btn">Commencer le quiz</button>
     </div>
 
     <div id="question-screen" style="display: none">
@@ -25,31 +25,22 @@
         Question <span id="current-question-index"></span> /
         <span id="total-questions"></span>
       </div>
-      <div class="question-container">
-        <p id="question-text"></p>
-        <div id="player"><p>👂</p></div>
-      </div>
-      <audio id="audio" src=""></audio>
+      <p id="question-text"></p>
+      <audio id="audio" autoplay src=""></audio>
       <div id="answers"></div>
       <div id="hintContainer">
         <button id="hintBtn">Indice</button>
         <p id="hint" class="hidden"></p>
       </div>
-      <div id="timer-div">Temps restant : <span id="time-left">0</span>s</div>
+      <!-- <div id="timer-div">Temps restant : <span id="time-left">0</span>s</div> -->
       <button id="next-btn" class="hidden">Question suivante</button>
     </div>
 
     <div id="result-screen" style="display: none">
-      <h2>Résultat final</h2>
-      <p id="score-text"></p>
-      <div class="rep-container">
-        <h3>Tes réponses :</h3>
-        <ul id="user-responses"></ul>
-      </div>
-      <p>Meilleur score : <span id="best-score-end">0</span></p>
+      <h2>Bien joué</h2>
       <button id="restart-btn">Recommencer</button>
     </div>
     <script type="module" src="../assets/js/questions.js"></script>
-    <script type="module" src="../assets/js/quiz.js"></script>
+    <script type="module" src="../assets/js/flashcard.js"></script>
   </body>
 </html>

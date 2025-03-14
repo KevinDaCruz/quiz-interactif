@@ -1,30 +1,23 @@
 import questions from './questions.js';
 
-// quiz.js
+// flashcard.js
 import {
   getElement,
   showElement,
   hideElement,
   setText,
   createAnswerButton,
-  updateScoreDisplay,
   lockAnswers,
   markCorrectAnswer,
-  createResume,
-  audioPlay,
+  createResumeFlashcard,
 } from './dom.js';
-import {
-  loadFromLocalStorage,
-  saveToLocalStorage,
-  startTimer,
-} from './utils.js';
+
 
 console.log('Quiz JS loaded...');
 
 let currentQuestionIndex = 0;
 let score = 0;
-let bestScore = loadFromLocalStorage('bestScore', 0);
-let timerId = null;
+
 let userResponses = [];
 
 // DOM Elements
@@ -32,8 +25,6 @@ const introScreen = getElement('#intro-screen');
 const questionScreen = getElement('#question-screen');
 const resultScreen = getElement('#result-screen');
 
-const bestScoreValue = getElement('#best-score-value');
-const bestScoreEnd = getElement('#best-score-end');
 const hintText = document.getElementById('hint');
 
 const questionText = getElement('#question-text');
@@ -43,13 +34,12 @@ const startBtn = getElement('#start-btn');
 const restartBtn = getElement('#restart-btn');
 
 const scoreText = getElement('#score-text');
-const timeLeftSpan = getElement('#time-left');
+
 
 const currentQuestionIndexSpan = getElement('#current-question-index');
 const totalQuestionsSpan = getElement('#total-questions');
 
 const audioDisplay = getElement('#audio');
-const audioButton = getElement('#player');
 const gameResume = getElement('#user-responses');
 
 // Init
@@ -57,14 +47,13 @@ startBtn.addEventListener('click', startQuiz);
 nextBtn.addEventListener('click', nextQuestion);
 restartBtn.addEventListener('click', restartQuiz);
 
-setText(bestScoreValue, bestScore);
+
 
 let questionCount = 0;
 
 function startQuiz() {
   hideElement(introScreen);
   showElement(questionScreen);
-  audioPlay(audioDisplay, audioButton);
   
   //Nombres aléatoires
   for (let i = 0; i < questions.length; i++) {
@@ -72,16 +61,21 @@ function startQuiz() {
     currentQuestionIndex = randomNumber;
   }
 
-  questionCount = 0;
+  questionCount = 0; 
   score = 0;
 
   setText(totalQuestionsSpan, questions.length);
 
   showQuestion();
+
+
+
 }
 
 function showQuestion() {
-  clearInterval(timerId);
+
+
+    
 
   const q = questions[currentQuestionIndex];
   setText(questionText, q.text);
@@ -100,19 +94,11 @@ function showQuestion() {
   }
   audioDisplay.src = `../assets/audio/${currentQuestionIndex}.mp3`;
 
-  timeLeftSpan.textContent = q.timeLimit;
-  timerId = startTimer(
-    q.timeLimit,
-    (timeLeft) => setText(timeLeftSpan, timeLeft),
-    () => {
-      lockAnswers(answersDiv);
-      nextBtn.classList.remove('hidden');
-    }
-  );
+
 }
 
 function selectAnswer(index, btn) {
-  clearInterval(timerId);
+
   userResponses.push(btn.innerText);
   console.log(btn.innerText, userResponses);
 
@@ -130,12 +116,12 @@ function selectAnswer(index, btn) {
 }
 
 function nextQuestion() {
-  hintText.classList.add('hidden');
-  if (questionCount >= questions.length - 1) {
-    endQuiz();
+  hintText.classList.add("hidden");
+  if (questionCount >= questions.length) {
+    endQuiz(); 
     return;
   }
-  questionCount++;
+  questionCount++; 
   let randomNumber = Math.floor(Math.random() * questions.length);
   currentQuestionIndex = randomNumber;
 
@@ -145,11 +131,11 @@ function nextQuestion() {
 function endQuiz() {
   hideElement(questionScreen);
   showElement(resultScreen);
-  updateScoreDisplay(scoreText, score, questions.length);
+  
 
  
   questions.forEach((question, i) => {
-    createResume(
+    createResumeFlashcard(
       gameResume,
       question.text,
       userResponses[i],
@@ -157,18 +143,14 @@ function endQuiz() {
     );
   });
 
-  if (score > bestScore) {
-    bestScore = score;
-    saveToLocalStorage('bestScore', bestScore);
-  }
-  setText(bestScoreEnd, bestScore);
+
 }
 
 
 function restartQuiz() {
   hideElement(resultScreen);
   showElement(introScreen);
-  setText(bestScoreValue, bestScore);
+
   gameResume.innerHTML = '';
   userResponses = [];
 }
@@ -183,16 +165,14 @@ hintBtn.addEventListener('click', () => {
 
 // Ajout du dark mode
 const darkModeToggle = document.getElementById('dark-mode-toggle');
-const gifBackgroundElement = document.querySelector('.gif-background');
-const dayGif = "/assets/img/day.gif";
-const nightGif = "/assets/img/night.gif";
-gifBackgroundElement.style.backgroundImage = `url('${dayGif}')`;
-
+if (darkModeToggle) {
   darkModeToggle.addEventListener('click', () => {
-    const currentBackground = gifBackgroundElement.style.backgroundImage;
-    if (currentBackground.includes(dayGif)) {
-      gifBackgroundElement.style.backgroundImage = `url('${nightGif}')`;
-    } else {
-      gifBackgroundElement.style.backgroundImage = `url('${dayGif}')`;
-    }
+    document.body.classList.toggle('dark-mode');
   });
+}
+
+// //ajout du mode Flashcard
+// const flashcard = document.getElementById('flashcard')
+// flashcard.addEventListener('click', () => {
+//   let gamemode = 1;
+// });
