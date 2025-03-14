@@ -180,8 +180,16 @@ hintBtn.addEventListener('click', () => {
 
 // Ajout du dark mode
 const darkModeToggle = document.getElementById('dark-mode-toggle');
-if (darkModeToggle) {
+const gifBackgroundElement = document.querySelector('.gif-background');
+const dayGif = "/assets/img/day.gif";
+const nightGif = "/assets/img/night.gif";
+gifBackgroundElement.style.backgroundImage = `url('${dayGif}')`;
+
   darkModeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
+    const currentBackground = gifBackgroundElement.style.backgroundImage;
+    if (currentBackground.includes(dayGif)) {
+      gifBackgroundElement.style.backgroundImage = `url('${nightGif}')`;
+    } else {
+      gifBackgroundElement.style.backgroundImage = `url('${dayGif}')`;
+    }
   });
-}

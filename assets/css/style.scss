@@ -4,33 +4,21 @@ $primary-color: #1976d2;
 $primary-hover-color: #1565c0;
 $background-color: #fafafa;
 $text-color: #333;
-@import url('https://fonts.googleapis.com/css2?family=Honk&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Honk&display=swap");
 
 body {
   font-family: "Segoe UI", Arial, sans-serif;
   margin: 20px;
   text-align: center;
-  background: $background-color;
   color: $text-color;
+}
 
-  // Style spécifique pour le mode sombre
-  &.dark-mode {
-    background: #121212;
+button {
+  background-color: color.adjust($primary-color, $lightness: -10%);
+  color: #fff;
 
-    // On adapte les boutons si besoin
-    button {
-      background-color: color.adjust($primary-color, $lightness: -10%);
-      color: #fff;
-
-      &:hover {
-        background-color: color.adjust($primary-hover-color, $lightness: -10%);
-      }
-    }
-
-    // En mode sombre, le h1 est en blanc
-    h1 {
-      color: #fff;
-    }
+  &:hover {
+    background-color: color.adjust($primary-hover-color, $lightness: -10%);
   }
 }
 
@@ -45,9 +33,7 @@ h1 {
   font-optical-sizing: auto;
   font-weight: 900;
   font-style: normal;
-  font-variation-settings:
-    "MORF" 15,
-    "SHLN" 50;
+  font-variation-settings: "MORF" 15, "SHLN" 50;
 }
 
 .gif-background {
@@ -58,7 +44,7 @@ h1 {
   height: 100%;
   object-fit: cover;
   z-index: -1; /* Ensures the GIF stays in the background */
-  background-image: url('/assets/img/giratina.gif');
+  background-image: url("/assets/img/day.gif");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -95,9 +81,9 @@ button {
   max-width: 500px;
   max-height: 500px;
   margin: 0 auto 20px;
-  background-image: url('/assets/img/pokemon.gif');
+  background-image: url("/assets/img/pokemon.gif");
   background-size: cover;
-  background-position: center;
+  background-position: right;
   background-repeat: no-repeat;
   padding: 4rem;
   border-radius: 8px;
@@ -155,6 +141,20 @@ button {
   height: 150px;
   overflow-y: scroll;
   border-radius: 4px;
+}
+
+#hintContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#hint {
+  text-align: center;
+  width: fit-content;
+  background-color: $background-color;
+  border-radius: 4px;
+  padding: 0.5rem;
 }
 
 .user-response {
