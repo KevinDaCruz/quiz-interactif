@@ -15,9 +15,8 @@ body {
   // Style spécifique pour le mode sombre
   &.dark-mode {
     background: #121212;
-    color: #e0e0e0;
 
-    // On adapte les boutons si besoin
+    // Adaptation des boutons en mode sombre
     button {
       background-color: color.adjust($primary-color, $lightness: -10%);
       color: #fff;
@@ -26,9 +25,15 @@ body {
         background-color: color.adjust($primary-hover-color, $lightness: -10%);
       }
     }
+
+    // En mode sombre, le h1 est en blanc
+    h1 {
+      color: #fff;
+    }
   }
 }
 
+// En mode normal, le h1 est en noir
 h1 {
   margin-bottom: 25px;
 }
