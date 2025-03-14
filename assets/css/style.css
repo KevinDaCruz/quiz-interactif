@@ -128,4 +128,28 @@ button:hover {
   background-color: #ffcdd2 !important;
 }
 
+.question-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+#player {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  border: 1px solid #1976d2;
+  background-color: #fafafa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#player p {
+  text-align: center;
+}
+#player:hover {
+  background-color: #1565c0;
+}
+
 /*# sourceMappingURL=style.css.map */

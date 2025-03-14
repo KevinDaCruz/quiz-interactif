@@ -11,6 +11,7 @@ import {
   lockAnswers,
   markCorrectAnswer,
   createResume,
+  audioPlay,
 } from './dom.js';
 import {
   loadFromLocalStorage,
@@ -48,6 +49,7 @@ const currentQuestionIndexSpan = getElement('#current-question-index');
 const totalQuestionsSpan = getElement('#total-questions');
 
 const audioDisplay = getElement('#audio');
+const audioButton = getElement('#player');
 const gameResume = getElement('#user-responses');
 
 // Init
@@ -62,28 +64,23 @@ let questionCount = 0;
 function startQuiz() {
   hideElement(introScreen);
   showElement(questionScreen);
-
+  audioPlay(audioDisplay, audioButton);
   //Nombres aléatoires
   for (let i = 0; i < questions.length; i++) {
     let randomNumber = Math.floor(Math.random() * questions.length);
     currentQuestionIndex = randomNumber;
   }
 
-  questionCount = 0; 
+  questionCount = 0;
   score = 0;
 
   setText(totalQuestionsSpan, questions.length);
 
   showQuestion();
-
-
-
 }
 
 function showQuestion() {
   clearInterval(timerId);
-
-    
 
   const q = questions[currentQuestionIndex];
   setText(questionText, q.text);
@@ -132,12 +129,12 @@ function selectAnswer(index, btn) {
 }
 
 function nextQuestion() {
-  hintText.classList.add("hidden");
-  if (questionCount >= questions.length) {
-    endQuiz(); 
+  hintText.classList.add('hidden');
+  if (questionCount >= questions.length - 1) {
+    endQuiz();
     return;
   }
-  questionCount++; 
+  questionCount++;
   let randomNumber = Math.floor(Math.random() * questions.length);
   currentQuestionIndex = randomNumber;
 

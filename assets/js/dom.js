@@ -40,3 +40,7 @@ export const createResume = (
   }">${userResponse}</span></p>`;
   container.appendChild(li);
 };
+
+export const audioPlay = (audio, audioButton) => {
+  audioButton.addEventListener('click', () => audio.play());
+};
