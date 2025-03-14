@@ -188,3 +188,9 @@ if (darkModeToggle) {
     document.body.classList.toggle('dark-mode');
   });
 }
+
+// //ajout du mode Flashcard
+// const Flashcard = document.getElementById('flashcard')
+// Flashcard.addEventListener('click', () => {
+  
+// });
