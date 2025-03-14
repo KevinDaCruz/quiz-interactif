@@ -4,6 +4,7 @@ $primary-color: #1976d2;
 $primary-hover-color: #1565c0;
 $background-color: #fafafa;
 $text-color: #333;
+@import url('https://fonts.googleapis.com/css2?family=Honk&display=swap');
 
 body {
   font-family: "Segoe UI", Arial, sans-serif;
@@ -36,6 +37,31 @@ body {
 // En mode normal, le h1 est en noir
 h1 {
   margin-bottom: 25px;
+  font-size: 5rem;
+}
+
+.honk-honk {
+  font-family: "Honk", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+  font-variation-settings:
+    "MORF" 15,
+    "SHLN" 50;
+}
+
+.gif-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* Ensures the GIF stays in the background */
+  background-image: url('/assets/img/giratina.gif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .notice {
@@ -66,10 +92,14 @@ button {
 #intro-screen,
 #question-screen,
 #result-screen {
-  max-width: 600px;
+  max-width: 500px;
+  max-height: 500px;
   margin: 0 auto 20px;
-  background: #fff;
-  padding: 20px;
+  background-image: url('/assets/img/pokemon.gif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 4rem;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
