@@ -195,8 +195,8 @@ hintBtn.addEventListener('click', () => {
 // Ajout du dark mode
 const darkModeToggle = document.getElementById('dark-mode-toggle');
 const gifBackgroundElement = document.querySelector('.gif-background');
-const dayGif = '/assets/img/day.gif';
-const nightGif = '/assets/img/night.gif';
+const dayGif = './assets/img/day.gif';
+const nightGif = './assets/img/night.gif';
 gifBackgroundElement.style.backgroundImage = `url('${dayGif}')`;
 
 darkModeToggle.addEventListener('click', () => {

@@ -46,7 +46,7 @@ h1 {
   height: 100%;
   object-fit: cover;
   z-index: -1; /* Ensures the GIF stays in the background */
-  background-image: url('/assets/img/day.gif');
+  background-image: url('./assets/img/day.gif');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -83,7 +83,7 @@ button {
   max-width: 500px;
   max-height: 500px;
   margin: 0 auto 20px;
-  background-image: url('/assets/img/pokemon.gif');
+  background-image: url('./assets/img/pokemon.gif');
   background-size: cover;
   background-position: right;
   background-repeat: no-repeat;
