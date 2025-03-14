@@ -5,6 +5,17 @@ body {
   background: #fafafa;
   color: #333;
 }
+body.dark-mode {
+  background: #121212;
+  color: #e0e0e0;
+}
+body.dark-mode button {
+  background-color: rgb(19.5744680851, 92.3914893617, 164.4255319149);
+  color: #fff;
+}
+body.dark-mode button:hover {
+  background-color: rgb(15.9718309859, 76.8169014085, 146.0281690141);
+}
 
 h1 {
   margin-bottom: 25px;
