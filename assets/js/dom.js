@@ -37,7 +37,9 @@ export const createResume = (
   li.classList.add('user-response');
   li.innerHTML = `<p>${question} <span class="rep ${
     userResponse === goodResponse ? 'correct' : 'wrong'
-  }">${userResponse}</span></p>`;
+  }">${
+    userResponse === undefined ? 'Pas de réponse' : userResponse
+  }</span></p>`;
   container.appendChild(li);
 };
 
@@ -48,7 +50,7 @@ export const audioPlay = (audio, audioButton) => {
 export const selectorVerification = (selector, errorContainer) => {
   console.log(selector.value !== 'normal' || 'time-attack');
 
-  if (selector.value === 'normal' || selector.value === 'time-attack') {
+  if (selector.value === 'normal' || selector.value === 'time_attack') {
     hideElement(errorContainer);
     return true;
   } else {

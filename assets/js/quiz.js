@@ -26,7 +26,10 @@ let currentQuestionIndex = 0;
 let score = 0;
 let bestScore = loadFromLocalStorage('bestScore', 0);
 let timerId = null;
+let globalTimerId = null;
 let userResponses = [];
+let isTimeAttack = false;
+let globalTimeLeft = 20;
 
 // DOM Elements
 const introScreen = getElement('#intro-screen');
@@ -74,17 +77,24 @@ function startQuiz() {
     hideElement(introScreen);
     showElement(questionScreen);
     audioPlay(audioDisplay, audioButton);
-    //Nombres aléatoires
-    for (let i = 0; i < questions.length; i++) {
-      let randomNumber = Math.floor(Math.random() * questions.length);
-      currentQuestionIndex = randomNumber;
+    isTimeAttack = introSelector.value === 'time_attack';
+
+    if (isTimeAttack) {
+      globalTimeLeft = 20;
+      setText(timeLeftSpan, globalTimeLeft);
+      globalTimerId = startTimer(
+        globalTimeLeft,
+        (timeLeft) => {
+          globalTimeLeft = timeLeft;
+          setText(timeLeftSpan, timeLeft);
+        },
+        endQuiz
+      );
     }
 
     questionCount = 0;
     score = 0;
-
     setText(totalQuestionsSpan, questions.length);
-
     showQuestion();
   }
 }
@@ -104,26 +114,25 @@ function showQuestion() {
   });
 
   nextBtn.classList.add('hidden');
-  if (currentQuestionIndex > 15) {
-    hideElement(audioDisplay);
-  }
+  if (currentQuestionIndex > 15) hideElement(audioDisplay);
   audioDisplay.src = `../assets/audio/${currentQuestionIndex}.mp3`;
 
-  timeLeftSpan.textContent = q.timeLimit;
-  timerId = startTimer(
-    q.timeLimit,
-    (timeLeft) => setText(timeLeftSpan, timeLeft),
-    () => {
-      lockAnswers(answersDiv);
-      nextBtn.classList.remove('hidden');
-    }
-  );
+  if (!isTimeAttack) {
+    timeLeftSpan.textContent = q.timeLimit;
+    timerId = startTimer(
+      q.timeLimit,
+      (timeLeft) => setText(timeLeftSpan, timeLeft),
+      () => {
+        lockAnswers(answersDiv);
+        nextBtn.classList.remove('hidden');
+      }
+    );
+  }
 }
 
 function selectAnswer(index, btn) {
   clearInterval(timerId);
   userResponses.push(btn.innerText);
-  console.log(btn.innerText, userResponses);
 
   const q = questions[currentQuestionIndex];
   if (index === q.correct) {
@@ -140,18 +149,13 @@ function selectAnswer(index, btn) {
 
 function nextQuestion() {
   hintText.classList.add('hidden');
-  if (questionCount >= questions.length - 1) {
-    endQuiz();
-    return;
-  }
   questionCount++;
-  let randomNumber = Math.floor(Math.random() * questions.length);
-  currentQuestionIndex = randomNumber;
-
+  currentQuestionIndex = Math.floor(Math.random() * questions.length);
   showQuestion();
 }
 
 function endQuiz() {
+  clearInterval(globalTimerId);
   hideElement(questionScreen);
   showElement(resultScreen);
   updateScoreDisplay(scoreText, score, questions.length);
@@ -200,6 +204,7 @@ shareBtn.addEventListener('click', () => {
 });
 
 function restartQuiz() {
+  clearInterval(globalTimerId);
   hideElement(resultScreen);
   showElement(introScreen);
   setText(bestScoreValue, bestScore);

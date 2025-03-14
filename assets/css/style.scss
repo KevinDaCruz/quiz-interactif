@@ -4,7 +4,7 @@ $primary-color: #1976d2;
 $primary-hover-color: #1565c0;
 $background-color: #fafafa;
 $text-color: #333;
-@import url("https://fonts.googleapis.com/css2?family=Honk&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Honk&display=swap');
 
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
@@ -25,15 +25,17 @@ button {
 // En mode normal, le h1 est en noir
 h1 {
   margin-bottom: 25px;
+  margin-top: 5px;
   font-size: 5rem;
+  line-height: 58px;
 }
 
 .honk-honk {
-  font-family: "Honk", system-ui;
+  font-family: 'Honk', system-ui;
   font-optical-sizing: auto;
   font-weight: 900;
   font-style: normal;
-  font-variation-settings: "MORF" 15, "SHLN" 50;
+  font-variation-settings: 'MORF' 15, 'SHLN' 50;
 }
 
 .gif-background {
@@ -44,7 +46,7 @@ h1 {
   height: 100%;
   object-fit: cover;
   z-index: -1; /* Ensures the GIF stays in the background */
-  background-image: url("/assets/img/day.gif");
+  background-image: url('/assets/img/day.gif');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -81,11 +83,11 @@ button {
   max-width: 500px;
   max-height: 500px;
   margin: 0 auto 20px;
-  background-image: url("/assets/img/pokemon.gif");
+  background-image: url('/assets/img/pokemon.gif');
   background-size: cover;
   background-position: right;
   background-repeat: no-repeat;
-  padding: 4rem;
+  padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -209,4 +211,9 @@ button {
 
 .error {
   display: none;
+  border: 1px solid red;
+  border-radius: 8px;
+  color: red;
+  background-color: whitesmoke;
+  padding: 10px;
 }
