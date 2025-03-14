@@ -149,6 +149,10 @@ function selectAnswer(index, btn) {
 function nextQuestion() {
   hintText.classList.add('hidden');
   questionCount++;
+  if (questionCount >= questions.length) {
+    endQuiz();
+    return;
+  }
   currentQuestionIndex = Math.floor(Math.random() * questions.length);
   showQuestion();
 }
@@ -202,4 +206,30 @@ darkModeToggle.addEventListener('click', () => {
   )
     ? `url('${nightGif}')`
     : `url('${dayGif}')`;
+});
+
+shareTwitterBtn.addEventListener('click', () => {
+  const url = `https://twitter.com/intent/tweet?text=J'ai obtenu ${score}/${questions.length} au quiz !&url=${window.location.href}`;
+  window.open(url, '_blank');
+});
+
+shareFacebookBtn.addEventListener('click', () => {
+  const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+    window.location.href
+  )}`;
+  window.open(url, '_blank');
+});
+
+shareBtn.addEventListener('click', () => {
+  if (navigator.share) {
+    navigator
+      .share({
+        title: 'Quiz Dynamique',
+        text: `J'ai obtenu ${score}/${questions.length} au quiz !`,
+        url: window.location.href,
+      })
+      .catch(console.error);
+  } else {
+    alert("Le partage n'est pas disponible sur cette plateforme.");
+  }
 });
