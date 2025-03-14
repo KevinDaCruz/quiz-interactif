@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr" class="gif-background dark-mode">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Super Quiz Deluxe</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <button id="dark-mode-toggle">Mode Sombre</button>
+      <a href="index.html"><button id="flashcard">Mode Normal</button></a>
+    </header>
+    <h1 class="honk-honk">Mode Flashcard</h1>
+
+    <div id="intro-screen">
+      <p class="notice">
+        Testez vos connaissances en quelques questions sans pression !
+      </p>
+      <!-- <p>Meilleur score : <span id="best-score-value">0</span></p> -->
+      <button id="start-btn">Commencer le quiz</button>
+    </div>
+
+    <div id="question-screen" style="display: none">
+      <div id="progress">
+        Question <span id="current-question-index"></span> /
+        <span id="total-questions"></span>
+      </div>
+      <p id="question-text"></p>
+      <audio id="audio" autoplay src=""></audio>
+      <div id="answers"></div>
+      <div id="hintContainer">
+        <button id="hintBtn">Indice</button>
+        <p id="hint" class="hidden"></p>
+      </div>
+      <!-- <div id="timer-div">Temps restant : <span id="time-left">0</span>s</div> -->
+      <button id="next-btn" class="hidden">Question suivante</button>
+    </div>
+
+    <div id="result-screen" style="display: none">
+      <h2>Bien joué</h2>
+      <button id="restart-btn">Recommencer</button>
+    </div>
+    <script type="module" src="../assets/js/questions.js"></script>
+    <script type="module" src="../assets/js/flashcard.js"></script>
+  </body>
+</html>

@@ -1,0 +1,219 @@
+@use 'sass:color';
+
+$primary-color: #1976d2;
+$primary-hover-color: #1565c0;
+$background-color: #fafafa;
+$text-color: #333;
+@import url('https://fonts.googleapis.com/css2?family=Honk&display=swap');
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 20px;
+  text-align: center;
+  color: $text-color;
+}
+
+button {
+  background-color: color.adjust($primary-color, $lightness: -10%);
+  color: #fff;
+
+  &:hover {
+    background-color: color.adjust($primary-hover-color, $lightness: -10%);
+  }
+}
+
+// En mode normal, le h1 est en noir
+h1 {
+  margin-bottom: 25px;
+  margin-top: 5px;
+  font-size: 5rem;
+  line-height: 58px;
+}
+
+.honk-honk {
+  font-family: 'Honk', system-ui;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+  font-variation-settings: 'MORF' 15, 'SHLN' 50;
+}
+
+.gif-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* Ensures the GIF stays in the background */
+  background-image: url('/assets/img/day.gif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.notice {
+  font-style: italic;
+  margin-bottom: 15px;
+  color: #555;
+}
+
+button {
+  margin: 10px auto;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: $primary-color;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: $primary-hover-color;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+#intro-screen,
+#question-screen,
+#result-screen {
+  max-width: 500px;
+  max-height: 500px;
+  margin: 0 auto 20px;
+  background-image: url('/assets/img/pokemon.gif');
+  background-size: cover;
+  background-position: right;
+  background-repeat: no-repeat;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#answers button {
+  display: block;
+  width: 60%;
+  margin: 8px auto;
+  background-color: #f5f5f5;
+  color: $text-color;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #1565c0;
+  }
+
+  &.correct {
+    background-color: #c8e6c9 !important;
+  }
+
+  &.wrong {
+    background-color: #ffcdd2 !important;
+  }
+}
+
+// Styles pour le timer
+#timer-div {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #d32f2f;
+}
+
+#progress {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #455a64;
+}
+
+#result-screen h2 {
+  margin-bottom: 20px;
+  color: #2e7d32;
+}
+
+#score-text {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.rep-container {
+  border: 1px solid lightgrey;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: 150px;
+  overflow-y: scroll;
+  border-radius: 4px;
+}
+
+#hintContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#hint {
+  text-align: center;
+  width: fit-content;
+  background-color: $background-color;
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+
+.user-response {
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  list-style-type: none;
+  width: fit-content;
+  margin-block: 5px;
+  padding: 5px;
+  margin-inline: auto;
+  line-height: 28px;
+}
+
+.rep {
+  border-radius: 9999px;
+  border: 1px solid black;
+  padding: 5px 10px;
+
+  &.correct {
+    background-color: #c8e6c9 !important;
+  }
+
+  &.wrong {
+    background-color: #ffcdd2 !important;
+  }
+}
+
+.question-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+#player {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  border: 1px solid $primary-color;
+  background-color: $background-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & p {
+    text-align: center;
+  }
+  &:hover {
+    background-color: $primary-hover-color;
+  }
+}
+
+.error {
+  display: none;
+  border: 1px solid red;
+  border-radius: 8px;
+  color: red;
+  background-color: whitesmoke;
+  padding: 10px;
+}

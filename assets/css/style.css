@@ -1,13 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Honk&display=swap");
 body {
   font-family: "Segoe UI", Arial, sans-serif;
   margin: 20px;
   text-align: center;
-  background: #fafafa;
   color: #333;
+}
+
+button {
+  background-color: rgb(19.5744680851, 92.3914893617, 164.4255319149);
+  color: #fff;
+}
+button:hover {
+  background-color: rgb(15.9718309859, 76.8169014085, 146.0281690141);
 }
 
 h1 {
   margin-bottom: 25px;
+  margin-top: 5px;
+  font-size: 5rem;
+  line-height: 58px;
+}
+
+.honk-honk {
+  font-family: "Honk", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+  font-variation-settings: "MORF" 15, "SHLN" 50;
+}
+
+.gif-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* Ensures the GIF stays in the background */
+  background-image: url("/assets/img/day.gif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .notice {
@@ -26,7 +59,6 @@ button {
   border-radius: 6px;
   transition: background-color 0.3s;
 }
-
 button:hover {
   background-color: #1565c0;
 }
@@ -38,10 +70,14 @@ button:hover {
 #intro-screen,
 #question-screen,
 #result-screen {
-  max-width: 600px;
+  max-width: 500px;
+  max-height: 500px;
   margin: 0 auto 20px;
-  background: #fff;
-  padding: 20px;
+  background-image: url("/assets/img/pokemon.gif");
+  background-size: cover;
+  background-position: right;
+  background-repeat: no-repeat;
+  padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -55,23 +91,20 @@ button:hover {
   border-radius: 4px;
   transition: background-color 0.3s;
 }
-
 #answers button:hover {
-  background-color: #e0e0e0;
+  background-color: #1565c0;
 }
-
-.correct {
-  background-color: #c8e6c9 !important; /* vert clair */
+#answers button.correct {
+  background-color: #c8e6c9 !important;
 }
-
-.wrong {
-  background-color: #ffcdd2 !important; /* rouge clair */
+#answers button.wrong {
+  background-color: #ffcdd2 !important;
 }
 
 #timer-div {
   margin-top: 10px;
   font-weight: bold;
-  color: #d32f2f; /* rouge foncé */
+  color: #d32f2f;
 }
 
 #progress {
@@ -82,10 +115,90 @@ button:hover {
 
 #result-screen h2 {
   margin-bottom: 20px;
-  color: #2e7d32; /* vert foncé */
+  color: #2e7d32;
 }
 
 #score-text {
   font-size: 1.2em;
   margin-bottom: 10px;
 }
+
+.rep-container {
+  border: 1px solid lightgrey;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: 150px;
+  overflow-y: scroll;
+  border-radius: 4px;
+}
+
+#hintContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#hint {
+  text-align: center;
+  width: fit-content;
+  background-color: #fafafa;
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+
+.user-response {
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  list-style-type: none;
+  width: fit-content;
+  margin-block: 5px;
+  padding: 5px;
+  margin-inline: auto;
+  line-height: 28px;
+}
+
+.rep {
+  border-radius: 9999px;
+  border: 1px solid black;
+  padding: 5px 10px;
+}
+.rep.correct {
+  background-color: #c8e6c9 !important;
+}
+.rep.wrong {
+  background-color: #ffcdd2 !important;
+}
+
+.question-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+#player {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  border: 1px solid #1976d2;
+  background-color: #fafafa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#player p {
+  text-align: center;
+}
+#player:hover {
+  background-color: #1565c0;
+}
+
+.error {
+  display: none;
+  border: 1px solid red;
+  border-radius: 8px;
+  color: red;
+  background-color: whitesmoke;
+  padding: 10px;
+}
+
+/*# sourceMappingURL=style.css.map */
