@@ -164,3 +164,11 @@ hintBtn.addEventListener('click', () => {
     hintText.classList.add('hidden');
   }
 });
+
+// Ajout du dark mode
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+if (darkModeToggle) {
+  darkModeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+  });
+}
