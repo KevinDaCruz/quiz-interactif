@@ -8,16 +8,24 @@
   <body>
     <header>
       <button id="dark-mode-toggle">Mode Sombre</button>
-      <a href="flashcard.html"><button id="flashcard">Mode Flashcard</button></a>
+      <a href="flashcard.html"
+        ><button id="flashcard">Mode Flashcard</button></a
+      >
     </header>
     <h1 class="honk-honk">Quiz Super Magique Deluxe Édition Collector</h1>
 
     <div id="intro-screen">
+      <select id="select-mode">
+        <option value="" disabled selected>Choisissez un mode de jeu</option>
+        <option value="normal">Normal</option>
+        <option value="time_attack">Contre la montre</option>
+      </select>
       <p class="notice">
         As-tu l'Esprit Shonen ? Testes toi avec notre Quiz de Culture G !
       </p>
       <p>Meilleur score : <span id="best-score-value">0</span></p>
       <button id="start-btn">POUR LA HORDE !</button>
+      <p id="intro-error" class="error">Veuillez choisir un mode de jeu</p>
     </div>
 
     <div id="question-screen" style="display: none">

@@ -44,11 +44,19 @@ export const createResume = (
 export const audioPlay = (audio, audioButton) => {
   audioButton.addEventListener('click', () => audio.play());
 };
-export const createResumeFlashcard = (
-  question,
-  userResponse,
-  goodResponse
-) => {
+
+export const selectorVerification = (selector, errorContainer) => {
+  console.log(selector.value !== 'normal' || 'time-attack');
+
+  if (selector.value === 'normal' || selector.value === 'time-attack') {
+    hideElement(errorContainer);
+    return true;
+  } else {
+    showElement(errorContainer);
+    return false;
+  }
+};
+export const createResumeFlashcard = (question, userResponse, goodResponse) => {
   const li = document.createElement('li');
   li.classList.add('user-response');
   li.innerHTML = `<p>${question} <span class="rep ${

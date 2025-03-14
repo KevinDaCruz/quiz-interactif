@@ -1,4 +1,4 @@
-@use "sass:color";
+@use 'sass:color';
 
 $primary-color: #1976d2;
 $primary-hover-color: #1565c0;
@@ -7,7 +7,7 @@ $text-color: #333;
 @import url("https://fonts.googleapis.com/css2?family=Honk&display=swap");
 
 body {
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family: 'Segoe UI', Arial, sans-serif;
   margin: 20px;
   text-align: center;
   color: $text-color;
@@ -205,4 +205,8 @@ button {
   &:hover {
     background-color: $primary-hover-color;
   }
+}
+
+.error {
+  display: none;
 }
