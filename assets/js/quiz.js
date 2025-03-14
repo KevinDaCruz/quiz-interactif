@@ -57,20 +57,33 @@ restartBtn.addEventListener('click', restartQuiz);
 
 setText(bestScoreValue, bestScore);
 
+let questionCount = 0;
+
 function startQuiz() {
   hideElement(introScreen);
   showElement(questionScreen);
 
-  currentQuestionIndex = 0;
+  //Nombres aléatoires
+  for (let i = 0; i < questions.length; i++) {
+    let randomNumber = Math.floor(Math.random() * questions.length);
+    currentQuestionIndex = randomNumber;
+  }
+
+  questionCount = 0; 
   score = 0;
 
   setText(totalQuestionsSpan, questions.length);
 
   showQuestion();
+
+
+
 }
 
 function showQuestion() {
   clearInterval(timerId);
+
+    
 
   const q = questions[currentQuestionIndex];
   setText(questionText, q.text);
@@ -119,13 +132,16 @@ function selectAnswer(index, btn) {
 }
 
 function nextQuestion() {
-  hintText.classList.add('hidden');
-  currentQuestionIndex++;
-  if (currentQuestionIndex < questions.length) {
-    showQuestion();
-  } else {
-    endQuiz();
+  hintText.classList.add("hidden");
+  if (questionCount >= questions.length) {
+    endQuiz(); 
+    return;
   }
+  questionCount++; 
+  let randomNumber = Math.floor(Math.random() * questions.length);
+  currentQuestionIndex = randomNumber;
+
+  showQuestion();
 }
 
 function endQuiz() {
